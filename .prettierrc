@@ -1,0 +1,10 @@
+{
+  "jsxSingleQuote": true,
+  "singleAttributePerLine": true,
+  "singleQuote": true,
+  "semi": true,
+  "trailingComma": "all",
+  "quoteProps": "consistent",
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindStylesheet": "./src/app/globals.css"
+}
