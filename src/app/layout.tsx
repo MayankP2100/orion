@@ -1,17 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
-import { ThemeProvider } from '@/components/ui/theme-provider';
+import { Providers } from '@/components/providers';
 import './globals.css';
-import {
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  SignUpButton,
-  UserButton,
-} from '@clerk/nextjs';
-import { Button } from '@/components/ui/button';
-import { dark } from '@clerk/themes';
+import React from 'react';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -35,33 +26,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider appearance={{ theme: dark }}>
-      <html
-        lang='en'
-        suppressHydrationWarning
+    <html
+      lang='en'
+      suppressHydrationWarning
+    >
+      <body
+        className={`${inter.variable} ${jetbrainsMono.variable} border antialiased`}
       >
-        <body
-          className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
-        >
-          <ThemeProvider
-            attribute='class'
-            defaultTheme='dark'
-            enableSystem
-            disableTransitionOnChange
-          >
-            <SignedOut>
-              <SignInButton />
-              <SignUpButton>
-                <Button>Sign Up</Button>
-              </SignUpButton>
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-            {children}
-          </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
   );
 }
